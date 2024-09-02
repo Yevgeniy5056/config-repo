@@ -65,5 +65,5 @@ info:
     description: Ticketing Application User Service
 
 demo:
-  config: demo-config
+  config: Updated demo-config
 
