@@ -15,7 +15,7 @@ spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/user-db
     username: postgres
-    password: admin
+    password: '{cipher}75e424ebacc4ac532c4c4154cc20345d65c08acb2b3cc09ac790d1f32862c4a5'
     driver-class-name: org.postgresql.Driver
     initialization-mode: always
 
@@ -64,6 +64,20 @@ info:
     name: user-service
     description: Ticketing Application User Service
 
-demo:
-  config: Second update demo-config
+resilience4j:
+  circuitbreaker:
+    instances:
+      project-service:
+        baseConfig: default
+      task-service:
+        baseConfig: default
+        waitDurationInOpenState: 20000
+    configs:
+      default:
+        slidingWindowType: COUNT_BASED
+        slidingWindowSize: 10
+        failureRateThreshold: 50
+        waitDurationInOpenState: 10000
+        automaticTransitionFromOpenToHalfOpenEnabled: true
+        permittedNumberOfCallsInHalfOpenState: 2
 
