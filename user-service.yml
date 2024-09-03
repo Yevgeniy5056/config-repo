@@ -80,4 +80,13 @@ resilience4j:
         waitDurationInOpenState: 10000
         automaticTransitionFromOpenToHalfOpenEnabled: true
         permittedNumberOfCallsInHalfOpenState: 2
-
+  retry:
+    instances:
+      project-service:
+        baseConfig: default
+      task-service:
+        baseConfig: default
+    configs:
+      default:
+        maxAttempts: 3
+        waitDuration: 200
