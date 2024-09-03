@@ -90,3 +90,15 @@ resilience4j:
       default:
         maxAttempts: 3
         waitDuration: 200
+  ratelimiter:
+    instances:
+      project-service:
+        baseConfig: default
+      task-service:
+        baseConfig: default
+    configs:
+      default:
+        limitRefreshPeriod: 50000
+        limitForPeriod: 5
+        timeout-duration: 20000
+
